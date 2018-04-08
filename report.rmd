@@ -1,0 +1,19 @@
+Here is the selected description:
+
+```{r model, collapse=TRUE}
+options(tinytex.verbose = TRUE)
+summary(choiceData())
+```
+
+
+Below is a bubble plot with the selected description.
+
+```{r plot, fig.height=5, fig.width=9}
+options(tinytex.verbose = TRUE)
+p <- ggplot(choiceData(),aes_(x = ~Description, y = ~Cluster, size = ~pvalue))
+p <- p +
+      geom_point() +
+      aes_string(color="p.adjust") +theme_bw()+theme(axis.text.x = element_text(size=8,face = "bold",angle=30, hjust=1, vjust=1))+
+      scale_color_gradientn(guide=guide_colorbar(reverse=TRUE), colors = enrichplot:::sig_palette)
+p
+```
